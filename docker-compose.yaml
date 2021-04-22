@@ -1,0 +1,38 @@
+version: "3.9"
+services: 
+  app:
+    container_name: app
+    build: .
+    ports: 
+      - ${APP_PORT}:3000
+    depends_on: 
+      - db
+    volumes: 
+      - .:/app
+      - /app/node_modules
+    tty: true
+    networks: 
+      - calendar-network
+  
+  db:
+    image: mysql:5.7.34
+    command: --innodb-use-native-aio=0
+    container_name: db
+    ports: 
+      - ${TYPEORM_PORT}:3306
+    restart: always
+    tty: true
+    volumes: 
+      - calendar_db:/var/lib/mysql
+    environment: 
+      - MYSQL_DATABASE=${TYPEORM_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${TYPEORM_PASSWORD}
+    networks: 
+      - calendar-network
+
+networks: 
+  calendar-network:
+    driver: bridge
+
+volumes: 
+  calendar_db:
