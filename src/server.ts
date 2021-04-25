@@ -1,31 +1,23 @@
-import express, { Application } from 'express';
-import cors from 'cors';
-import router from './router';
+import 'reflect-metadata';
+import { ApolloServer } from 'apollo-server';
 import * as database from './database';
+import { schemafn } from './resolvers';
 
 export class Server {
-  private app: Application;
+  private app: ApolloServer;
 
-  constructor(private port = 3000) {
-    this.app = express();
-  }
+  constructor(private port = 3000) { }
 
   //responsible to initialize the server
   public async init(): Promise<void> {
-    this.setupExpress();
-    this.setupRouter();
+    await this.setupApolloServer();
     await this.setupDatabase();
   }
 
   //config express
-  private setupExpress(): void {
-    this.app.use(cors());
-    this.app.use(express.json());
-  }
-
-  //add router to app
-  private setupRouter(): void {
-    this.app.use(router);
+  private async setupApolloServer(): Promise<void> {
+    const schema = await schemafn();
+    this.app = new ApolloServer({ schema })
   }
 
   //establish the db's connection
@@ -33,7 +25,7 @@ export class Server {
     await database.connect();
   }
 
-  public getApp(): Application {
+  public getApp(): ApolloServer {
     return this.app;
   }
 

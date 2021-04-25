@@ -2,8 +2,10 @@
   "name": "calendar",
   "version": "1.0.0",
   "main": "src/index.js",
+  "module": "commonjs",
   "license": "MIT",
   "scripts": {
+    "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "dev": "ts-node-dev --ignore-watch node_modules src/index.ts"
   },
   "devDependencies": {
@@ -13,11 +15,15 @@
   },
   "dependencies": {
     "@types/cors": "^2.8.10",
+    "apollo-server": "^2.23.0",
+    "class-validator": "^0.13.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "graphql": "^15.5.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1",
     "typeorm": "^0.2.32"
   }
 }
