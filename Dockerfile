@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:lts-alpine3.10
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ COPY tsconfig.json .
 
 EXPOSE 3000
 
-CMD [ "yarn", "dev" ]
+ENTRYPOINT [ "yarn", "dev"]
