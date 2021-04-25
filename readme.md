@@ -37,4 +37,4 @@ yarn dev /pronto!
 
 ```
 
-Feito esses passos, o backend ficará disponível no endereço http://localhost:3000. O Frontend se encontra nesse [repositório](https://github.com/Azuos0/goatme_calendar_frontend).
+Feito esses passos, o backend ficará disponível no endereço http://localhost:3000. O Frontend deste teste se encontra nesse [repositório](https://github.com/Azuos0/goatme_calendar_frontend).
